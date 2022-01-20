@@ -12,12 +12,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--dir", type=str, required=True, help="path to folder containing images")
 parser.add_argument("--train_frac", type=float, default=0.8, help="percentage of images to use for training set")
 parser.add_argument("--test_frac", type=float, default=0.0, help="percentage of images to use for test set")
+parser.add_argument("--seed", type=int, default=1, help="seed")
 parser.add_argument("--sort", action="store_true", help="if set, sort the images instead of shuffling them")
 a = parser.parse_args()
 
 
 def main():
-    random.seed(0)
+    random.seed(a.seed)
 
     files = glob.glob(os.path.join(a.dir, "*.png"))
     files.sort()
